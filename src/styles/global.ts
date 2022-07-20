@@ -6,7 +6,7 @@ export default createGlobalStyle`
   html {
     --color-primary: #7C5DFA;
     --color-secondary: #252945;
-    --color1: #9277FF;
+    --color1: #373B53;
     --color2: #1E2139;
     --color3: #DFE3FA;
     --color4: #888EB0;
