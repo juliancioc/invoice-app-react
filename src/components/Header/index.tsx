@@ -5,7 +5,7 @@ import * as S from './styles'
 const Header = () => {
   return (
     <S.Wrapper>
-      <h1>Header</h1>
+      <p>Header</p>
     </S.Wrapper>
   )
 }
