@@ -1,5 +1,5 @@
 {
-  "name": "store-games",
+  "name": "invoice-app-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,7 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "generate": "yarn plop --plopfile ./generators/plopfile.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test:watch": "yarn jest --env=node --watch"
   },
   "eslintConfig": {
     "extends": [
@@ -44,9 +45,12 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.18.9",
     "@types/react-router-dom": "^5.3.0",
     "@types/styled-components": "^5.1.14",
     "husky": "^7.0.0",
+    "jest": "^28.1.3",
+    "jest-styled-components": "^7.0.8",
     "prettier": "^2.4.1"
   }
 }
