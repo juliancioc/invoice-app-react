@@ -14,7 +14,7 @@ export default createGlobalStyle`
     --color6: #0C0E16;
     --color7: #EC5757;
     --color8: #FF9797;
-    --color9: #F8F8FB;
+    --color-background: #F8F8FB;
     --color10: #141625;
     --font-large_xl: 2rem;
     --font-large: 1.25rem;
@@ -22,7 +22,11 @@ export default createGlobalStyle`
     --font-small: 0.75rem;
   }
 
-*{
+  button {
+    cursor: pointer;
+  }
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;

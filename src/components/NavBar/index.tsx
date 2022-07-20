@@ -1,8 +1,8 @@
 import React from 'react'
 
-import logo from '../../../assets/logo.svg'
-import iconMoon from '../../../assets/icon-moon.svg'
-import imgAvatar from '../../../assets/image-avatar.jpg'
+import logo from '../../assets/logo.svg'
+import iconMoon from '../../assets/icon-moon.svg'
+import imgAvatar from '../../assets/image-avatar.jpg'
 import * as S from './styles'
 
 const NavBar = () => {
