@@ -2,12 +2,12 @@ import React from 'react'
 
 import * as S from './styles'
 
-const Header = () => {
+const NavBar = () => {
   return (
     <S.Wrapper>
-      <p>Header</p>
+      <h1>NavBar</h1>
     </S.Wrapper>
   )
 }
 
-export default Header
+export default NavBar
