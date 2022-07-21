@@ -6,6 +6,7 @@ export default createGlobalStyle`
   html {
     --color-primary: #7C5DFA;
     --color-secondary: #252945;
+    --color-white: #FFFFFF;
     --color1: #373B53;
     --color2: #1E2139;
     --color3: #DFE3FA;
@@ -16,10 +17,11 @@ export default createGlobalStyle`
     --color8: #FF9797;
     --color-background: #F8F8FB;
     --color10: #141625;
+    --color11: #858BB2;
     --font-large_xl: 2rem;
     --font-large: 1.25rem;
     --font-medium: 1rem;
-    --font-small: 0.75rem;
+    --font-small: 0.8rem;
   }
 
   button {
