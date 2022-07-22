@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 
@@ -7,7 +7,6 @@ import Filters from '../../components/Filters'
 import NavBar from '../../components/NavBar'
 import NoInvoices from '../../components/NoInvoices'
 import { loadInvoices } from '../../redux/invoice.store'
-import { getDataInvoices } from '../../services/invoices'
 
 import * as S from './styles'
 
