@@ -36,7 +36,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(loadInvoices())
-  }, [])
+  }, [dispatch])
 
   return (
     <S.Wrapper>
