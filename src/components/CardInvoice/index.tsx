@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 
 import formatDate from '../../utils/formatDate'
 import formatMoney from '../../utils/formatMoney'
@@ -20,8 +21,14 @@ const CardInvoice = ({
   clientName,
   status
 }: InvoiceProps) => {
+  const history = useHistory()
+
+  function handleClickInvoice(id: string) {
+    history.push(`invoice/${id}`)
+  }
+
   return (
-    <S.Wrapper>
+    <S.Wrapper onClick={() => handleClickInvoice(id)}>
       <S.LeftSide>
         <p className="invoice-id">
           <span>#</span>

@@ -21,7 +21,7 @@ export default createGlobalStyle`
     --font-large_xl: 2rem;
     --font-large: 1.25rem;
     --font-medium: 1rem;
-    --font-small: 0.8rem;
+    --font-small: 0.75rem;
   }
 
   button {

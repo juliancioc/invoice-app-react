@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import CardInvoice, { InvoiceProps } from '../../components/CardInvoice'
 import Filters from '../../components/Filters'
 import NavBar from '../../components/NavBar'
 import NoInvoices from '../../components/NoInvoices'
+import { loadInvoices } from '../../redux/invoice.store'
 import { getDataInvoices } from '../../services/invoices'
 
 import * as S from './styles'
@@ -29,21 +32,24 @@ export interface InvoicesCompleteProps extends InvoiceProps {
 }
 
 const Home = () => {
-  const [invoices, setInvoices] = useState<InvoicesCompleteProps[]>([])
+  const dispatch = useDispatch()
+  const { invoices } = useSelector((state: any) => state)
 
   useEffect(() => {
-    const data = getDataInvoices()
-    setInvoices(data)
+    dispatch(loadInvoices())
   }, [])
-  
+
   return (
     <S.Wrapper>
       <NavBar />
       <Filters />
-      {/* <NoInvoices /> */}
-      {invoices.map((invoice: InvoiceProps) => (
-        <CardInvoice {...invoice} />
-      ))}
+      {invoices.invoicesData.length === 0 ? (
+        <NoInvoices />
+      ) : (
+        invoices.invoicesData.map((invoice: InvoiceProps) => (
+          <CardInvoice key={invoice.id} {...invoice} />
+        ))
+      )}
     </S.Wrapper>
   )
 }

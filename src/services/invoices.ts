@@ -1,4 +1,4 @@
-export const getDataInvoices = () => {
+export const getDataInvoices = async () => {
   return [
     {
       id: 'RT3080',

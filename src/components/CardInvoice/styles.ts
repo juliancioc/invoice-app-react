@@ -4,7 +4,7 @@ type StatusProps = {
   status: string
 }
 
-const colorStatus = (status: string) => {
+export const colorStatus = (status: string) => {
   switch (status) {
     case 'paid':
       return '#33D69F'
@@ -17,7 +17,7 @@ const colorStatus = (status: string) => {
   }
 }
 
-const colorStatusRGB = (status: string) => {
+export const colorStatusRGB = (status: string) => {
   switch (status) {
     case 'paid':
       return '51, 214, 159'
@@ -41,6 +41,7 @@ export const Wrapper = styled.div`
   border-radius: 8px;
   padding: 24px;
   margin: 16px auto;
+  cursor: pointer;
 `
 
 export const LeftSide = styled.div`
@@ -71,6 +72,7 @@ export const RightSide = styled.div`
   .client-name {
     color: var(--color11);
     font-size: var(--font-small);
+    text-align: right;
   }
 `
 
