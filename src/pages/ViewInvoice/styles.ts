@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
   .text-small {
     font-size: var(--font-small);
     color: var(--color5);
-    margin-top: 4px;
+    margin-top: 10px;
   }
 `
 
@@ -87,7 +87,7 @@ export const InvoiceInformation = styled.div`
   display: flex;
 
   div:first-child {
-    margin-right: 4rem;
+    margin-right: 3rem;
   }
 `
 
