@@ -10,16 +10,18 @@ import { loadInvoices } from '../../redux/invoice.store'
 
 import * as S from './styles'
 
+type AddressProps = {
+  street: string
+  city: string
+  postCode: string
+  country: string
+}
 export interface InvoicesCompleteProps extends InvoiceProps {
   paymentTerms: number
   clientEmail: string
-  senderAddress: {
-    street: string
-    city: string
-    postCode: string
-    country: string
-  }
-  clientAddress: object
+  createdAt: string
+  senderAddress: AddressProps
+  clientAddress: AddressProps
   paymentDue: string
   description: string
   items: {
@@ -42,10 +44,10 @@ const Home = () => {
     <S.Wrapper>
       <NavBar />
       <Filters />
-      {invoices.invoicesData.length === 0 ? (
+      {invoices.invoiceData.length === 0 ? (
         <NoInvoices />
       ) : (
-        invoices.invoicesData.map((invoice: InvoiceProps) => (
+        invoices.invoiceData.map((invoice: InvoiceProps) => (
           <CardInvoice key={invoice.id} {...invoice} />
         ))
       )}

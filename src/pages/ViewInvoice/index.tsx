@@ -1,82 +1,118 @@
-import React from 'react'
-import GoBack from '../../components/GoBack'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
+import GoBack from '../../components/GoBack'
 import NavBar from '../../components/NavBar'
 import * as S from './styles'
 import { Status } from '../../components/CardInvoice/styles'
 import formatMoney from '../../utils/formatMoney'
+import { InvoicesCompleteProps } from '../Home'
+import formatDate from '../../utils/formatDate'
+import { getInvoiceById } from '../../redux/invoice.store'
+
+type InvoiceReduxDataProps = {
+  invoices: {
+    invoice: InvoicesCompleteProps
+  }
+}
+
+type ParamsProps = {
+  id: string
+}
 
 const ViewInvoice = () => {
+  const dispatch = useDispatch()
+  const { id }: ParamsProps = useParams()
+
+  const { invoice } = useSelector(
+    (state: InvoiceReduxDataProps) => state.invoices
+  )
+
+  useEffect(() => {
+    dispatch(getInvoiceById(id))
+  }, [dispatch, id])
+
   return (
-    <S.Wrapper>
+    <S.Wrapper> 
       <NavBar />
       <GoBack route="/" />
-      <S.StatusWrapper>
-        <p>Status</p>
-        <Status status="paid">Paid</Status>
-      </S.StatusWrapper>
-      <S.Content>
-        <S.Block>
-          <p className="text-highlights">
-            <span>#</span>XM9141
-          </p>
-          <p className="text-low">Graphic Design</p>
-        </S.Block>
-        <S.Address>
-          <p>19 Union</p>
-          <p>19 Union</p>
-          <p>19 Union</p>
-          <p>19 Union</p>
-        </S.Address>
-        <S.InvoiceInformation>
-          <S.Block>
-            <p className="text-low">Invoice Date</p>
-            <p className="text-highlights text-important date">21 Aug 2021</p>
-            <p className="text-low">Payment Due</p>
-            <p className="text-highlights text-important">20 Sep 2021</p>
-          </S.Block>
-          <S.Block>
-            <p className="text-low">Bill To</p>
-            <p className="text-highlights text-important">Alex Grim</p>
-            <p className="text-small">84 Church</p>
-            <p className="text-small">84 Church</p>
-            <p className="text-small">84 Church</p>
-            <p className="text-small">84 Church</p>
-          </S.Block>
-        </S.InvoiceInformation>
-        <S.Block>
-          <p className="text-low">Send to</p>
-          <p className="text-highlights text-important">john@john.com</p>
-        </S.Block>
-        <S.PaymentInformation>
-          <S.PaymentContent>
+      {invoice.hasOwnProperty('status') && (
+        <>
+          <S.StatusWrapper>
+            <p>Status</p>
+            <Status status={invoice.status}>{invoice.status}</Status>
+          </S.StatusWrapper>
+          <S.Content>
             <S.Block>
-              <S.Item>
-                <p className="item">Banner Design</p>
-                <p className="item">{formatMoney(556)}</p>
-              </S.Item>
-              <p className="installments">1 x {formatMoney(556)}</p>
+              <p className="text-highlights">
+                <span>#</span>
+                {invoice.id}
+              </p>
+              <p className="text-low">{invoice.description}</p>
             </S.Block>
+            <S.Address>
+              <p>{invoice.senderAddress.street}</p>
+              <p>{invoice.senderAddress.city}</p>
+              <p>{invoice.senderAddress.postCode}</p>
+              <p>{invoice.senderAddress.country}</p>
+            </S.Address>
+            <S.InvoiceInformation>
+              <S.Block>
+                <p className="text-low">Invoice Date</p>
+                <p className="text-highlights text-important date">
+                  {formatDate(new Date(invoice.createdAt))}
+                </p>
+                <p className="text-low">Payment Due</p>
+                <p className="text-highlights text-important">
+                  {formatDate(new Date(invoice.paymentDue))}
+                </p>
+              </S.Block>
+              <S.Block>
+                <p className="text-low">Bill To</p>
+                <p className="text-highlights text-important">
+                  {invoice.clientName}
+                </p>
+                <p className="text-small">{invoice.clientAddress.street}</p>
+                <p className="text-small">{invoice.clientAddress.city}</p>
+                <p className="text-small">{invoice.clientAddress.postCode}</p>
+                <p className="text-small">{invoice.clientAddress.country}</p>
+              </S.Block>
+            </S.InvoiceInformation>
             <S.Block>
-              <S.Item>
-                <p className="item">Banner Design</p>
-                <p className="item">{formatMoney(556)}</p>
-              </S.Item>
-              <p className="installments">1 x {formatMoney(556)}</p>
+              <p className="text-low">Send to</p>
+              <p className="text-highlights text-important">
+                {invoice.clientEmail}
+              </p>
             </S.Block>
-          </S.PaymentContent>
-          <S.Total>
-            <p>Grand Total</p>
-            <p className="price">{formatMoney(556)}</p>
-          </S.Total>
-        </S.PaymentInformation>
-      </S.Content>
+            <S.PaymentInformation>
+              <S.PaymentContent>
+                {invoice.items.map((item, idx) => (
+                  <S.Block key={idx}>
+                    <S.Item>
+                      <p className="item">{item.name}</p>
+                      <p className="item">{formatMoney(item.price)}</p>
+                    </S.Item>
+                    <p className="installments">
+                      {item.quantity} x {formatMoney(item.total)}
+                    </p>
+                  </S.Block>
+                ))}
+              </S.PaymentContent>
+              <S.Total>
+                <p>Grand Total</p>
+                <p className="price">{formatMoney(invoice.total)}</p>
+              </S.Total>
+            </S.PaymentInformation>
+          </S.Content>
 
-      <S.Actions>
-        <button className='btn-edit'>Edit</button>
-        <button className='btn-delete'>Delete</button>
-        <button className='btn-mark-as-paid'>Mark as Paid</button>
-      </S.Actions>
+          <S.Actions>
+            <button className="btn-edit">Edit</button>
+            <button className="btn-delete">Delete</button>
+            <button className="btn-mark-as-paid">Mark as Paid</button>
+          </S.Actions>
+        </>
+      )}
     </S.Wrapper>
   )
 }
