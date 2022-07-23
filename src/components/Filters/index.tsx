@@ -1,14 +1,15 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import iconPlus from '../../assets/icon-plus.svg'
+import { newInvoice } from '../../redux/invoice.store'
 import * as S from './styles'
 
 const Filters = () => {
-  const history = useHistory()
+  const dispatch = useDispatch()
 
   function handleNewInvoice() {
-    history.push('/new-invoice')
+    dispatch(newInvoice(true))
   }
   return (
     <S.Wrapper>

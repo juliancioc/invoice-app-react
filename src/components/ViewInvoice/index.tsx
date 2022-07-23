@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import GoBack from '../../components/GoBack'
-import NavBar from '../../components/NavBar'
+import GoBack from '../GoBack'
+import NavBar from '../NavBar'
 import * as S from './styles'
-import { Status } from '../../components/CardInvoice/styles'
+import { Status } from '../CardInvoice/styles'
 import formatMoney from '../../utils/formatMoney'
-import { InvoicesCompleteProps } from '../Home'
+import { InvoicesCompleteProps } from '../../pages/Home'
 import formatDate from '../../utils/formatDate'
 import { getInvoiceById } from '../../redux/invoice.store'
 
@@ -37,7 +37,7 @@ const ViewInvoice = () => {
   return (
     <S.Wrapper> 
       <NavBar />
-      <GoBack route="/" />
+      <GoBack />
       {invoice.hasOwnProperty('status') && (
         <>
           <S.StatusWrapper>

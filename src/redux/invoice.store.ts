@@ -7,7 +7,9 @@ const invoice = createSlice({
   name: 'invoices',
   initialState: {
     invoiceData: [],
-    invoice: {}
+    invoice: {},
+    isNewInvoice: false,
+    isEditInvoice: false
   },
   reducers: {
     listInvoicesReducer(state, { payload }) {
@@ -15,11 +17,22 @@ const invoice = createSlice({
     },
     getInvoiceByIdReducer(state, { payload }) {
       return { ...state, invoice: payload }
+    },
+    newInvoiceReducer(state, { payload }) {
+      return { ...state, isNewInvoice: payload }
+    },
+    editInvoiceReducer(state, { payload }) {
+      return { ...state, isEditInvoice: payload }
     }
   }
 })
 
-export const { listInvoicesReducer, getInvoiceByIdReducer } = invoice.actions
+export const {
+  listInvoicesReducer,
+  getInvoiceByIdReducer,
+  newInvoiceReducer,
+  editInvoiceReducer
+} = invoice.actions
 export default invoice.reducer
 
 export function loadInvoices(): any {
@@ -38,3 +51,6 @@ export function getInvoiceById(id: string): any {
     dispatch(getInvoiceByIdReducer(invoice))
   }
 }
+
+export const newInvoice = (isNewInvoice: boolean) =>
+  newInvoiceReducer(isNewInvoice)

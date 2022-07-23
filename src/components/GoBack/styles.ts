@@ -7,10 +7,11 @@ export const Wrapper = styled.div`
     margin-right: 1.5rem;
   }
 
-  a {
-    text-decoration: none;
+  button {
     color: var(--color6);
     font-size: var(--font-small);
     font-weight: 700;
+    background: transparent !important;
+    border: none;
   }
 `

@@ -1,18 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import * as S from './styles'
 import iconArrowLeft from '../../assets/icon-arrow-left.svg'
+import { newInvoice } from '../../redux/invoice.store'
 
-type GoBackProps = {
-  route: string
-}
+const GoBack = () => {
+  const dispatch = useDispatch()
 
-const GoBack = ({ route }: GoBackProps) => {
+  function handleGoBack() {
+    dispatch(newInvoice(false))
+  }
+
   return (
     <S.Wrapper>
-      <img src={iconArrowLeft} alt="Icon go back" />
-      <Link to={route}>Go back</Link>
+      <button onClick={handleGoBack}>
+        {' '}
+        <img src={iconArrowLeft} alt="Icon go back" /> Go back
+      </button>
     </S.Wrapper>
   )
 }

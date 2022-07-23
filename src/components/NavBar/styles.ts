@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.main`
+export const Wrapper = styled.div`
   background-color: var(--color1);
   display: flex;
   justify-content: space-between;

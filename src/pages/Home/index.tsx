@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import CardInvoice, { InvoiceProps } from '../../components/CardInvoice'
 import Filters from '../../components/Filters'
 import NavBar from '../../components/NavBar'
+import NewInvoice from '../../components/NewInvoice'
 import NoInvoices from '../../components/NoInvoices'
 import { loadInvoices } from '../../redux/invoice.store'
 
@@ -43,14 +44,14 @@ const Home = () => {
   return (
     <S.Wrapper>
       <NavBar />
-      <Filters />
-      {invoices.invoiceData.length === 0 ? (
-        <NoInvoices />
-      ) : (
+      {invoices.isNewInvoice ? <NewInvoice /> : <Filters />}
+      {invoices.invoiceData.length === 0 && <NoInvoices />}
+
+      {!invoices.isNewInvoice &&
+        invoices.invoiceData.length &&
         invoices.invoiceData.map((invoice: InvoiceProps) => (
           <CardInvoice key={invoice.id} {...invoice} />
-        ))
-      )}
+        ))}
     </S.Wrapper>
   )
 }
