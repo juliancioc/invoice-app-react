@@ -76,6 +76,7 @@ export const Block = styled.div`
 
 export const ItemDetail = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin-top: 24px;
   justify-content: space-between;
   align-items: center;
@@ -87,7 +88,7 @@ export const ItemDetail = styled.div`
   }
 
   .quantity {
-    width: 64px;
+    width: 95px;
   }
 
   .price {
@@ -107,6 +108,10 @@ export const ItemDetail = styled.div`
 
 export const DeleteItem = styled.div`
   margin-top: 1.2rem;
+
+  img {
+    cursor: pointer;
+  }
 `
 
 export const Actions = styled.div`
@@ -127,3 +132,5 @@ export const Actions = styled.div`
     color: var(--color-white)
   }
 `
+
+export const Form = styled.form``
