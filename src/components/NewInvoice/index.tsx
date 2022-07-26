@@ -14,7 +14,9 @@ type ItemsProps = {
 
 const NewInvoice = () => {
   const [items, setItems] = useState<ItemsProps[]>([])
-  const [item, setItem] = useState<ItemsProps>({} as any)
+  const [itemState, setItemState] = useState<ItemsProps>({
+    name: '', price: 0, quantity: 0, total: 0
+  } as any)
 
   const [invoiceDataToSave, setInvoiceDataToSave] = useState({
     id: '',
@@ -44,27 +46,41 @@ const NewInvoice = () => {
   function handleAddNewItem(e: any) {
     e.preventDefault()
 
-    setItems([...items, { name: '', price: 0, quantity: 0, total: 0 }])
+    if (items.length === 0) {
+      setItems([itemState])
+    } else {
+      setItems([itemState, ...items])
+    }
+
   }
 
-  function handleChangeItem(event: any, nameItem: string) {
+  function changeTotalItem(name: string, value: string | number) {
+    if (name !== 'name') {
+      return name === 'quantity'
+        ? Number(value) * itemState.price
+        : Number(value) * itemState.quantity
+    } else {
+      return 0
+    }
+  }
+
+  function handleChangeItem(event: any) {
     const value = event.target.value
     const name = event.target.name
 
-    let findItem: any = items.filter((item) => item.name === nameItem)[0]
-    findItem[name] = value
-    findItem.total =
-      name === 'price' ? value * findItem.quantity : value * findItem.price
-
-    console.log('item', findItem)
-    setItems([...findItem, ...items.filter((item) => item.name !== nameItem)])
+    setItemState({
+      ...itemState,
+      [name]: name === 'quantity' || name === 'price' ? Number(value) : value,
+      total: changeTotalItem(name, value)
+    })
   }
 
   function handleDeleteItem(nameItem: string) {
     setItems(items.filter((item) => item.name !== nameItem))
   }
+  console.log('items', items)
+  console.log('itemState', itemState)
 
-  console.log(items)
   return (
     <S.Wrapper>
       <GoBack />
@@ -149,7 +165,7 @@ const NewInvoice = () => {
                 <p>Item Name</p>
                 <input
                   name="name"
-                  onChange={(e: any) => handleChangeItem(e, item.name)}
+                  onChange={(e: any) => handleChangeItem(e)}
                   type="text"
                 />
               </S.FieldWrapper>
@@ -159,7 +175,7 @@ const NewInvoice = () => {
                   <p>Qty.</p>
                   <input
                     name="quantity"
-                    onChange={(e: any) => handleChangeItem(e, item.name)}
+                    onChange={(e: any) => handleChangeItem(e)}
                     type="number"
                   />
                 </div>
@@ -168,13 +184,17 @@ const NewInvoice = () => {
                   <p>Price</p>
                   <input
                     name="price"
-                    onChange={(e: any) => handleChangeItem(e, item.name)}
+                    onChange={(e: any) => handleChangeItem(e)}
                     type="number"
                   />
                 </div>
                 <div className="total">
                   <p>Total</p>
-                  <p>{formatMoney(item.total)}</p>
+                  <p>
+                    {formatMoney(
+                      item.total !== 0 ? item.total : itemState.total
+                    )}
+                  </p>
                 </div>
                 <S.DeleteItem>
                   <img
