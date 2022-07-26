@@ -13,10 +13,15 @@ type ItemsProps = {
 }
 
 const NewInvoice = () => {
-  const [items, setItems] = useState<ItemsProps[]>([])
+  const [items, setItems] = useState<ItemsProps[]>([
+    { name: '', price: 0, quantity: 0, total: 0 }
+  ])
   const [itemState, setItemState] = useState<ItemsProps>({
-    name: '', price: 0, quantity: 0, total: 0
-  } as any)
+    name: '',
+    price: 0,
+    quantity: 0,
+    total: 0
+  })
 
   const [invoiceDataToSave, setInvoiceDataToSave] = useState({
     id: '',
@@ -46,12 +51,8 @@ const NewInvoice = () => {
   function handleAddNewItem(e: any) {
     e.preventDefault()
 
-    if (items.length === 0) {
-      setItems([itemState])
-    } else {
-      setItems([itemState, ...items])
-    }
-
+    setItems([itemState, ...items])
+    setItemState({ name: '', price: 0, quantity: 0, total: 0 })
   }
 
   function changeTotalItem(name: string, value: string | number) {
@@ -78,8 +79,6 @@ const NewInvoice = () => {
   function handleDeleteItem(nameItem: string) {
     setItems(items.filter((item) => item.name !== nameItem))
   }
-  console.log('items', items)
-  console.log('itemState', itemState)
 
   return (
     <S.Wrapper>
@@ -164,6 +163,7 @@ const NewInvoice = () => {
               <S.FieldWrapper>
                 <p>Item Name</p>
                 <input
+                  value={item.name !== '' ? item.name : itemState.name}
                   name="name"
                   onChange={(e: any) => handleChangeItem(e)}
                   type="text"
@@ -174,6 +174,9 @@ const NewInvoice = () => {
                 <div className="quantity">
                   <p>Qty.</p>
                   <input
+                    value={
+                      item.quantity !== 0 ? item.quantity : itemState.quantity
+                    }
                     name="quantity"
                     onChange={(e: any) => handleChangeItem(e)}
                     type="number"
@@ -183,6 +186,7 @@ const NewInvoice = () => {
                 <div className="price">
                   <p>Price</p>
                   <input
+                    value={item.price !== 0 ? item.price : itemState.price}
                     name="price"
                     onChange={(e: any) => handleChangeItem(e)}
                     type="number"
