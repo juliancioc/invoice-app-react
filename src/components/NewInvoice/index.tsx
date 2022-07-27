@@ -4,6 +4,7 @@ import GoBack from '../GoBack'
 import * as S from './styles'
 import iconDelete from '../../assets/icon-delete.svg'
 import formatMoney from '../../utils/formatMoney'
+import { AddressProps, InvoicesCompleteProps } from '../../pages/Home'
 
 type ItemsProps = {
   name: string
@@ -22,31 +23,34 @@ const NewInvoice = () => {
     quantity: 0,
     total: 0
   })
+  const [senderAddress, setSenderAddress] = useState<AddressProps>({} as any)
+  const [clientAddress, setClientAddress] = useState<AddressProps>({} as any)
 
-  const [invoiceDataToSave, setInvoiceDataToSave] = useState({
-    id: '',
-    createdAt: new Date(),
-    paymentDue: '',
-    description: '',
-    paymentTerms: 1,
-    clientName: '',
-    clientEmail: '',
-    status: '',
-    senderAddress: {
-      street: '',
-      city: '',
-      postCode: '',
-      country: ''
-    },
-    clientAddress: {
-      street: '',
-      city: '',
-      postCode: '',
-      country: ''
-    },
-    items: [],
-    total: 1800.9
-  })
+  const [invoiceDataToSave, setInvoiceDataToSave] =
+    useState<InvoicesCompleteProps>({
+      id: '',
+      createdAt: new Date(),
+      paymentDue: '',
+      description: '',
+      paymentTerms: 1,
+      clientName: '',
+      clientEmail: '',
+      status: '',
+      senderAddress: {
+        street: '',
+        city: '',
+        postCode: '',
+        country: ''
+      },
+      clientAddress: {
+        street: '',
+        city: '',
+        postCode: '',
+        country: ''
+      },
+      items: [],
+      total: 1800.9
+    })
 
   function handleAddNewItem(e: any) {
     e.preventDefault()
@@ -80,69 +84,172 @@ const NewInvoice = () => {
     setItems(items.filter((item) => item.name !== nameItem))
   }
 
+  function handleChange(event: any) {
+    const value = event.target.value
+    const name = event.target.name
+
+    setInvoiceDataToSave({
+      ...invoiceDataToSave,
+      [name]: value,
+      id: `RA${Math.floor(Math.random() * 100)}`,
+      items: items,
+      senderAddress: senderAddress,
+      clientAddress: clientAddress
+    })
+  }
+
+  function handleChangeAddress(event: any) {
+    const value = event.target.value
+    const name = event.target.name
+
+    setSenderAddress({
+      ...senderAddress,
+      [name]: value
+    })
+  }
+
+  function handleChangeClientAddress(event: any) {
+    const value = event.target.value
+    const name = event.target.name
+
+    setClientAddress({
+      ...clientAddress,
+      [name]: value
+    })
+  }
+
+  function handleSubmit(event: any) {
+    event.preventDefault()
+    setInvoiceDataToSave({
+      ...invoiceDataToSave,
+      items: items,
+      senderAddress: senderAddress,
+      clientAddress: clientAddress
+    })
+    console.log(invoiceDataToSave)
+  }
+
+  console.log('senderAddress', senderAddress)
+  console.log('clientAddress', clientAddress)
+  console.log('invoiceDataToSave', invoiceDataToSave)
   return (
     <S.Wrapper>
       <GoBack />
-      <S.Form>
+      <S.Form onSubmit={handleSubmit}>
         <S.Content>
           <h1>New Invoice</h1>
           <p className="title">Bill From</p>
           <S.FieldWrapper>
             <p>Street Address</p>
-            <input type="text" />
+            <input
+              value={senderAddress.street}
+              name="street"
+              onChange={handleChangeAddress}
+              type="text"
+            />
           </S.FieldWrapper>
 
           <S.Block>
             <S.FieldWrapper>
               <p>City</p>
-              <input type="text" />
+              <input
+                value={senderAddress.city}
+                name="city"
+                onChange={handleChangeAddress}
+                type="text"
+              />
             </S.FieldWrapper>
             <S.FieldWrapper>
               <p>Post Code</p>
-              <input type="text" />
+              <input
+                value={senderAddress.postCode}
+                name="postCode"
+                onChange={handleChangeAddress}
+                type="text"
+              />
             </S.FieldWrapper>
           </S.Block>
 
           <S.FieldWrapper>
             <p>Country</p>
-            <input type="text" />
+            <input
+              value={senderAddress.country}
+              name="country"
+              onChange={handleChangeAddress}
+              type="text"
+            />
           </S.FieldWrapper>
 
           <p className="title">Bill To</p>
           <S.FieldWrapper>
             <p>Client's name</p>
-            <input type="text" />
+            <input
+              value={invoiceDataToSave.clientName}
+              name="clientName"
+              onChange={handleChange}
+              type="text"
+            />
           </S.FieldWrapper>
 
           <S.FieldWrapper>
             <p>Client's Email</p>
-            <input type="text" />
+            <input
+              value={invoiceDataToSave.clientEmail}
+              name="clientEmail"
+              onChange={handleChange}
+              type="text"
+            />
           </S.FieldWrapper>
 
           <S.FieldWrapper>
             <p>Street Address</p>
-            <input type="text" />
+            <input
+              value={clientAddress.street}
+              name="street"
+              onChange={handleChangeClientAddress}
+              type="text"
+            />
           </S.FieldWrapper>
 
           <S.Block>
             <S.FieldWrapper>
               <p>City</p>
-              <input type="text" />
+              <input
+                value={clientAddress.city}
+                name="city"
+                onChange={handleChangeClientAddress}
+                type="text"
+              />
             </S.FieldWrapper>
             <S.FieldWrapper>
               <p>Post Code</p>
-              <input type="text" />
+              <input
+                value={clientAddress.postCode}
+                name="postCode"
+                onChange={handleChangeClientAddress}
+                type="text"
+              />
             </S.FieldWrapper>
           </S.Block>
 
           <S.FieldWrapper>
             <p>Country</p>
-            <input type="text" />
+            <input
+              value={clientAddress.country}
+              name="country"
+              onChange={handleChangeClientAddress}
+              type="text"
+            />
           </S.FieldWrapper>
 
           <S.FieldWrapper>
             <p>Invoice Date</p>
-            <input type="date" />
+            <input
+              value={invoiceDataToSave.paymentTerms}
+              name="paymentTerms"
+              onChange={handleChange}
+              type="date"
+            />
           </S.FieldWrapper>
 
           <S.FieldWrapper>
@@ -154,7 +261,12 @@ const NewInvoice = () => {
 
           <S.FieldWrapper>
             <p>Project Description</p>
-            <input type="text" />
+            <input
+              value={invoiceDataToSave.description}
+              name="description"
+              onChange={handleChange}
+              type="text"
+            />
           </S.FieldWrapper>
 
           <p className="item-list">Item List</p>

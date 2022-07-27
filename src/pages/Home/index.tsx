@@ -11,7 +11,7 @@ import { loadInvoices } from '../../redux/invoice.store'
 
 import * as S from './styles'
 
-type AddressProps = {
+export type AddressProps = {
   street: string
   city: string
   postCode: string
@@ -20,7 +20,7 @@ type AddressProps = {
 export interface InvoicesCompleteProps extends InvoiceProps {
   paymentTerms: number
   clientEmail: string
-  createdAt: string
+  createdAt: Date
   senderAddress: AddressProps
   clientAddress: AddressProps
   paymentDue: string
