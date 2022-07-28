@@ -44,11 +44,11 @@ const Home = () => {
   return (
     <S.Wrapper>
       <NavBar />
-      {invoices.isNewInvoice ? <NewInvoice /> : <Filters />}
+      <Filters />
+      {invoices.isNewInvoice && <NewInvoice />}
       {invoices.invoiceData.length === 0 && <NoInvoices />}
 
-      {!invoices.isNewInvoice &&
-        invoices.invoiceData.length &&
+      {invoices.invoiceData.length &&
         invoices.invoiceData.map((invoice: InvoiceProps) => (
           <CardInvoice key={invoice.id} {...invoice} />
         ))}

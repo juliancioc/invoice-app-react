@@ -5,8 +5,10 @@ export const Wrapper = styled.div`
   top: 72px;
   background-color: var(--color-white);
   width: 100%;
+  max-width: 719px;
 
-  input, .select-payment-terms {
+  input,
+  .select-payment-terms {
     padding: 15px 18px;
     border: 1px solid var(--color3);
     border-radius: 4px;
@@ -124,12 +126,12 @@ export const Actions = styled.div`
 
   .btn-save-as-draft {
     background-color: var(--color1);
-    color: var(--color4)
+    color: var(--color4);
   }
 
-  .save-send{
+  .save-send {
     background-color: var(--color-primary);
-    color: var(--color-white)
+    color: var(--color-white);
   }
 `
 

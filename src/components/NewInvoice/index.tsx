@@ -126,12 +126,10 @@ const NewInvoice = () => {
       senderAddress: senderAddress,
       clientAddress: clientAddress
     })
-    console.log(invoiceDataToSave)
+
+    localStorage.setItem('invoices', JSON.stringify(invoiceDataToSave))
   }
 
-  console.log('senderAddress', senderAddress)
-  console.log('clientAddress', clientAddress)
-  console.log('invoiceDataToSave', invoiceDataToSave)
   return (
     <S.Wrapper>
       <GoBack />
