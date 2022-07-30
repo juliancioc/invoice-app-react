@@ -2,11 +2,13 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import iconPlus from '../../assets/icon-plus.svg'
+import { useWindowSizeHook } from '../../hooks/useWindowHooks'
 import { newInvoice } from '../../redux/invoice.store'
 import * as S from './styles'
 
 const Filters = () => {
   const dispatch = useDispatch()
+  const { isMobile } = useWindowSizeHook()
 
   function handleNewInvoice() {
     dispatch(newInvoice(true))
@@ -22,7 +24,8 @@ const Filters = () => {
           <option>Filter by status</option>
         </select>
         <button onClick={handleNewInvoice}>
-          <img src={iconPlus} alt="Button add invoice" /> New
+          <img src={iconPlus} alt="Button add invoice" />
+          {isMobile ? 'New' : 'New Invoice'}
         </button>
       </S.RightSide>
     </S.Wrapper>
