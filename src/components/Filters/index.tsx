@@ -19,7 +19,7 @@ const Filters = () => {
       </S.LeftSide>
       <S.RightSide>
         <select name="filter" id="filter">
-          <option>Filter</option>
+          <option>Filter by status</option>
         </select>
         <button onClick={handleNewInvoice}>
           <img src={iconPlus} alt="Button add invoice" /> New

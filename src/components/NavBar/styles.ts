@@ -6,11 +6,11 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   height: 72px;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 968px) {
     flex-direction: column;
-    width: 80px;
+    width: 100px;
     height: 100vh;
-    border-radius: 0px 22px 22px 0px;
+    border-radius: 0px 26px 26px 0px;
     position: fixed;
   }
 `
@@ -24,7 +24,7 @@ export const RightSide = styled.div`
     cursor: pointer;
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 968px) {
     flex-direction: column;
     gap: 1.5rem;
 
@@ -43,9 +43,10 @@ export const AvatarWrapper = styled.div`
     width: 32px;
   }
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: 968px) {
     border-top: 1px solid grey;
     border-left: none;
     width: 100%;
+    padding: 2rem;
   }
 `

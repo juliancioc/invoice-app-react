@@ -42,6 +42,11 @@ export const Wrapper = styled.div`
   padding: 24px;
   margin: 16px auto;
   cursor: pointer;
+
+  @media (min-width: 768px) {
+    max-width: 730px;
+    height: 72px;
+  }
 `
 
 export const LeftSide = styled.div`
@@ -66,6 +71,16 @@ export const LeftSide = styled.div`
     font-weight: 700;
     margin-top: 8px;
   }
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+
+    .date, .total {
+      margin: 0;
+    }
+  }
 `
 
 export const RightSide = styled.div`
@@ -73,6 +88,12 @@ export const RightSide = styled.div`
     color: var(--color11);
     font-size: var(--font-small);
     text-align: right;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
   }
 `
 
@@ -94,5 +115,9 @@ export const Status = styled.div<StatusProps>`
     content: '•';
     margin-right: 8px;
     font-size: var(--font-large);
+  }
+
+  @media (min-width: 768px) {
+    margin: 0;
   }
 `

@@ -4,7 +4,17 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 32px 0;
+  padding: 72px 0;
+  max-width: 730px;
+
+  @media (min-width: 768px) {
+    margin: 0 auto;
+    justify-content: space-between;
+
+    h1 {
+      font-size: 32px;
+    }
+  }
 `
 
 export const LeftSide = styled.div`
@@ -16,6 +26,12 @@ export const LeftSide = styled.div`
   span {
     color: var(--color4);
     font-size: var(--font-small);
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 32px;
+    }
   }
 `
 
@@ -44,5 +60,11 @@ export const RightSide = styled.div`
     font-weight: bold;
     font-size: var(--font-small);
     margin-left: 18px;
+  }
+
+  @media (min-width: 768px) {
+    button {
+     width: 150px;
+    }
   }
 `
