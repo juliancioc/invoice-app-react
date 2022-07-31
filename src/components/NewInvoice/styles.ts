@@ -5,7 +5,6 @@ export const Wrapper = styled.div`
   top: 72px;
   background-color: var(--color-white);
   width: 100%;
-  max-width: 719px;
 
   input,
   .select-payment-terms {
@@ -25,6 +24,29 @@ export const Wrapper = styled.div`
     font-weight: bold;
     color: var(--color5);
     background-color: #f9fafe;
+  }
+
+  h1 {
+    padding-top: 1rem;
+  }
+
+  @media (min-width: 968px) {
+    top: 0px;
+    left: 100px;
+    right: 0;
+    width: calc(100% - 100px);
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+    h1 {
+      padding-top: 3rem;
+    }
+
+    form {
+      max-width: 590px;
+      background-color: var(--color-white);
+      border-radius: 0px 20px 20px 0px;
+    }
   }
 `
 
@@ -73,6 +95,12 @@ export const Block = styled.div`
 
   div {
     width: 152px;
+  }
+
+  @media (min-width: 968px) {
+    div {
+      width: auto;
+    }
   }
 `
 

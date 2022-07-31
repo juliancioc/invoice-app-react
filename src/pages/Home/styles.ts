@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.main`
-  background-color: var(--color-background);
+type Props = {
+  showBackground: boolean
+}
+
+export const Wrapper = styled.main<Props>`
+  background-color: ${({ showBackground }) =>
+    showBackground ? '#F8F8FB' : 'transparent'};
   min-height: 100vh;
 `

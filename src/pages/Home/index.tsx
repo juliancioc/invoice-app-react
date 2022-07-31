@@ -42,7 +42,7 @@ const Home = () => {
   }, [dispatch])
 
   return (
-    <S.Wrapper>
+    <S.Wrapper showBackground={!invoices.isNewInvoice}>
       <NavBar />
       <Filters />
       {invoices.isNewInvoice && <NewInvoice />}

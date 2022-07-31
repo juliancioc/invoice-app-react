@@ -5,6 +5,7 @@ import * as S from './styles'
 import iconDelete from '../../assets/icon-delete.svg'
 import formatMoney from '../../utils/formatMoney'
 import { AddressProps, InvoicesCompleteProps } from '../../pages/Home'
+import { useWindowSizeHook } from '../../hooks/useWindowHooks'
 
 type ItemsProps = {
   name: string
@@ -14,6 +15,7 @@ type ItemsProps = {
 }
 
 const NewInvoice = () => {
+  const { isMobile } = useWindowSizeHook()
   const [items, setItems] = useState<ItemsProps[]>([
     { name: '', price: 0, quantity: 0, total: 0 }
   ])
@@ -132,7 +134,7 @@ const NewInvoice = () => {
 
   return (
     <S.Wrapper>
-      <GoBack />
+      {isMobile && <GoBack />}
       <S.Form onSubmit={handleSubmit}>
         <S.Content>
           <h1>New Invoice</h1>
