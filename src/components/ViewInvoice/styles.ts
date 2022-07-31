@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   background-color: var(--color-background);
+  padding-bottom: 3rem;
 
   .text-highlights,
   .text-important {
@@ -34,6 +35,12 @@ export const Address = styled.div`
     font-size: var(--font-small);
     margin-bottom: 6px;
   }
+
+  @media(min-width: 768px) {
+    position: absolute;
+    right: 48px;
+    top: 48px;
+  }
 `
 
 export const StatusWrapper = styled.div`
@@ -57,6 +64,15 @@ export const StatusWrapper = styled.div`
   div {
     margin: 0;
   }
+
+  @media (min-width: 768px) {
+    max-width: 730px;
+    margin: 24px auto;
+
+    .status-invoice {
+      margin-right: 10rem;
+    }
+  }
 `
 export const Content = styled.div`
   width: 100%;
@@ -65,7 +81,14 @@ export const Content = styled.div`
   margin: 1rem auto;
   box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
   border-radius: 8px;
+  position: relative;
   padding: 1.5rem;
+
+  @media (min-width: 768px) {
+    max-width: 730px;
+    margin: 24px auto;
+    padding: 48px;
+  }
 `
 
 export const Block = styled.div`
@@ -88,6 +111,10 @@ export const InvoiceInformation = styled.div`
 
   div:first-child {
     margin-right: 3rem;
+  }
+
+  @media(min-width: 768px) {
+    margin-top: 3.5rem;
   }
 `
 
@@ -127,36 +154,5 @@ export const Item = styled.div`
   .item {
     font-weight: bold;
     font-size: var(--font-small);
-  }
-`
-
-export const Actions = styled.div`
-  height: 91px;
-  background-color: var(--color-white);
-  margin-top: 56px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  button {
-    border-radius: 24px;
-    padding: 15px 22px;
-    margin-right: 8px;
-    font-size: var(--font-small);
-    font-weight: 700;
-    color: var(--color-white);
-    border: none;
-  }
-
-  .btn-edit {
-    color: var(--color5);
-  }
-
-  .btn-delete {
-    background-color: var(--color7);
-  }
-
-  .btn-mark-as-paid {
-    background-color: var(--color-primary);
   }
 `

@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
 export const LeftSide = styled.div`
   h1 {
     font-size: var(--font-large);
+    margin-bottom: 8px;
     color: var(--color6);
   }
 

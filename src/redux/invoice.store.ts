@@ -9,11 +9,12 @@ const invoice = createSlice({
     invoiceData: [],
     invoice: {},
     isNewInvoice: false,
-    isEditInvoice: false
+    isEditInvoice: false,
+    totalInvoices: 0
   },
   reducers: {
     listInvoicesReducer(state, { payload }) {
-      return { ...state, invoiceData: payload }
+      return { ...state, invoiceData: payload, totalInvoices: payload.length }
     },
     getInvoiceByIdReducer(state, { payload }) {
       return { ...state, invoice: payload }

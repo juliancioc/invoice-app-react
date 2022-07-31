@@ -10,6 +10,8 @@ import formatMoney from '../../utils/formatMoney'
 import { InvoicesCompleteProps } from '../../pages/Home'
 import formatDate from '../../utils/formatDate'
 import { getInvoiceById } from '../../redux/invoice.store'
+import ActionsInvoice from './ActionsInvoice'
+import { useWindowSizeHook } from '../../hooks/useWindowHooks'
 
 type InvoiceReduxDataProps = {
   invoices: {
@@ -23,6 +25,7 @@ type ParamsProps = {
 
 const ViewInvoice = () => {
   const dispatch = useDispatch()
+  const { isMobile } = useWindowSizeHook()
   const { id }: ParamsProps = useParams()
 
   const { invoice } = useSelector(
@@ -35,14 +38,15 @@ const ViewInvoice = () => {
   }, [dispatch, id])
 
   return (
-    <S.Wrapper> 
+    <S.Wrapper>
       <NavBar />
-      <GoBack />
+      <GoBack route='/' />
       {invoice.hasOwnProperty('status') && (
         <>
           <S.StatusWrapper>
             <p>Status</p>
-            <Status status={invoice.status}>{invoice.status}</Status>
+            <Status className='status-invoice' status={invoice.status}>{invoice.status}</Status>
+            {!isMobile && <ActionsInvoice />}
           </S.StatusWrapper>
           <S.Content>
             <S.Block>
@@ -106,12 +110,7 @@ const ViewInvoice = () => {
               </S.Total>
             </S.PaymentInformation>
           </S.Content>
-
-          <S.Actions>
-            <button className="btn-edit">Edit</button>
-            <button className="btn-delete">Delete</button>
-            <button className="btn-mark-as-paid">Mark as Paid</button>
-          </S.Actions>
+          {isMobile && <ActionsInvoice />}
         </>
       )}
     </S.Wrapper>

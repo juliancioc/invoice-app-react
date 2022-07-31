@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  margin: 2rem 1.5rem;
+  padding: 2rem 1.5rem;
+  max-width: 730px;
+  margin: 0 auto;
 
   img {
     margin-right: 1.5rem;
@@ -14,4 +16,8 @@ export const Wrapper = styled.div`
     background: transparent !important;
     border: none;
   }
+
+  @media(min-width: 768px) {
+    padding-top: 60px;
+  } 
 `
