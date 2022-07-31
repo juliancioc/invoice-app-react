@@ -144,23 +144,4 @@ export const DeleteItem = styled.div`
   }
 `
 
-export const Actions = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 18px 15px;
-  margin-top: 44px;
-  background-color: var(--color-white);
-  box-shadow: inset 0px 10px 10px -10px rgba(72, 84, 159, 0.1);
-
-  .btn-save-as-draft {
-    background-color: var(--color1);
-    color: var(--color4);
-  }
-
-  .save-send {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-  }
-`
-
 export const Form = styled.form``

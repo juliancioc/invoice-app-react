@@ -6,6 +6,7 @@ import iconDelete from '../../assets/icon-delete.svg'
 import formatMoney from '../../utils/formatMoney'
 import { AddressProps, InvoicesCompleteProps } from '../../pages/Home'
 import { useWindowSizeHook } from '../../hooks/useWindowHooks'
+import ActionsNewInvoice from './ActionsNewInvoice'
 
 type ItemsProps = {
   name: string
@@ -16,9 +17,7 @@ type ItemsProps = {
 
 const NewInvoice = () => {
   const { isMobile } = useWindowSizeHook()
-  const [items, setItems] = useState<ItemsProps[]>([
-    { name: '', price: 0, quantity: 0, total: 0 }
-  ])
+  const [items, setItems] = useState<ItemsProps[]>([])
   const [itemState, setItemState] = useState<ItemsProps>({
     name: '',
     price: 0,
@@ -328,13 +327,7 @@ const NewInvoice = () => {
           </button>
         </S.Content>
 
-        <S.Actions>
-          <button className="btn-discard">Discard</button>
-          <button className="btn-save-as-draft">Save as Draft</button>
-          <button type="submit" className="save-send">
-            Save &#38; Send
-          </button>
-        </S.Actions>
+        <ActionsNewInvoice />
       </S.Form>
     </S.Wrapper>
   )
