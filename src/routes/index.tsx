@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch } from 'react-router-dom'
 
-import ViewInvoice from '../components/ViewInvoice'
+import ViewInvoice from '../pages/ViewInvoice'
 import Home from '../pages/Home'
 import Route from './Route'
 
