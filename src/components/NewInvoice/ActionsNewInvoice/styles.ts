@@ -10,7 +10,6 @@ export const Container = styled.div`
   box-shadow: inset 0px 10px 10px -10px rgba(72, 84, 159, 0.1);
   border-radius: 0px 0px 20px 0px;
 
-
   .btn-save-as-draft {
     background-color: var(--color1);
     color: var(--color4);
